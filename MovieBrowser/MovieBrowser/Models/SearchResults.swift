@@ -6,15 +6,32 @@
 //  Copyright © 2020 Frontend. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-struct SearchResults{
+struct SearchResults: Decodable {
     
     var title: String?
     var id: Int?
     var posterUrl: String?
+    var voteCount: Int?
+    
+    enum CodingKeys: String, CodingKey{
+        case title
+        case id
+        case posterURL = "poster_path"
+        case voteCount = "vote_count"
+    }
+    
+    init(from decoder: Decoder) throws{
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        title = try values.decode(String.self, forKey: .title)
+        id = try values.decode(Int.self, forKey: .id)
+        posterUrl = try values.decode(String.self, forKey: .posterURL)
+        voteCount = try values.decode(Int.self, forKey: .voteCount)
+    }
     
     /*
+     Takes Data from the following JSON file
      {
          "popularity": 28.406,
          "vote_count": 2467,

@@ -44,8 +44,8 @@ class SearchResultsTableViewController: UITableViewController {
                     let id = searchDict["id"] as? Int
                     let posterUrl = searchDict["poster_path"] as? String
                     if let title = title, let id = id, let posterUrl = posterUrl{
-                        let searchItem = SearchResults(title: title, id: id, posterUrl: posterUrl)
-                        self?.searchItems.append(searchItem)
+//                        let searchItem = SearchResults(title: title, id: id, posterUrl: posterUrl)
+//                        self?.searchItems.append(searchItem)
                     }
                     else{
                         print("Error in item")
@@ -61,7 +61,6 @@ class SearchResultsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadData()
     }
 

@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import Alamofire
 
-private let reuseIdentifier = "SearchViewCell"
+private let reuseIdentifier = "SearchResultCell"
 
 class SearchCollectionViewController: UICollectionViewController {
+    
+    var searchItems = Array<SearchResults>()
+    let popularMoviesURL = "https://api.themoviedb.org/3/discover/movie?api_key=6efc6c93672b8344194653f00432454f&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1"
+    let searchUrlInitial = "https://api.themoviedb.org/3/search/movie?api_key=6efc6c93672b8344194653f00432454f&language=en-US&page=1&include_adult=true&query="
+    let imageURLInitial = "https://image.tmdb.org/t/p/w500/"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,17 +24,44 @@ class SearchCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
         setupNavBar()
+        fetchMovies(apiUrl: popularMoviesURL)
     }
+    
+    
+    // MARK: Initial Setup
     
     func setupNavBar(){
         navigationController?.navigationBar.prefersLargeTitles = true
-        let searchController = UISearchController(searchResultsController: self)
+
+        let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
+        
+        searchController.searchResultsUpdater = self
+        // 2
+        searchController.obscuresBackgroundDuringPresentation = false
+        // 3
+        searchController.searchBar.placeholder = "Search Movies or TV"
+        // 4
+        navigationItem.searchController = searchController
+        // 5
+        definesPresentationContext = true
+    }
+    
+    func fetchMovies(apiUrl: String){
+        AF.request(apiUrl)
+            .validate()
+            .responseDecodable(of: AllResults.self){
+            [weak self] response in
+            guard let movies = response.value, let self = self else { return }
+                if let results = movies.results{
+                    self.searchItems = results
+                    self.collectionView.reloadData()
+            } else{
+                print("Error while parsing JSON")
+            }
+        }
     }
 
     /*
@@ -51,13 +84,27 @@ class SearchCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 10
+        return searchItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? SearchResultCell else{
+            fatalError("Cell not of type SearchResult")
+        }
     
         // Configure the cell
+
+        if let posterUrl = searchItems[indexPath.row].posterUrl{
+            AF.download(imageURLInitial + posterUrl).responseData { [weak cell] response in
+                if let data = response.value {
+                    let image = UIImage(data: data)
+                    cell?.posterImage.image = image
+                    cell?.titleLabel.text = self.searchItems[indexPath.row].title
+                    cell?.idLabel.text =  String(self.searchItems[indexPath.row].voteCount ?? -1)
+                }
+            }
+            
+        }
     
         return cell
     }
@@ -93,4 +140,20 @@ class SearchCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension SearchCollectionViewController : UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("Updating")
+        let searchBar = searchController.searchBar
+        if searchBar.text! != "" {
+            guard let searchURL = (searchUrlInitial + searchBar.text!).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else{
+                fatalError("Weird UISearchError")
+            }
+            fetchMovies(apiUrl: searchURL)
+        }
+        else{
+            fetchMovies(apiUrl: popularMoviesURL)
+        }
+    }
 }
