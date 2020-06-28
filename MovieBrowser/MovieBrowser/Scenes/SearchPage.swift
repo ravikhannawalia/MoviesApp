@@ -1,14 +1,14 @@
 //
-//  ExploreViewController.swift
+//  SearchPage.swift
 //  MovieBrowser
 //
-//  Created by Frontend on 6/23/20.
+//  Created by Ravi Khannawalia on 28/06/20.
 //  Copyright © 2020 Frontend. All rights reserved.
 //
 
 import UIKit
 
-class ExploreViewController: UIViewController {
+class SearchPage: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
