@@ -76,9 +76,7 @@ class MovieDBService{
         case .movie:
             urlString = Constants.movieURLInitial + searchTerm + Constants.apiKey
         }
-        if queryType == .movie{
-            print(urlString)
-        }
+        
       return urlString
     }
 }

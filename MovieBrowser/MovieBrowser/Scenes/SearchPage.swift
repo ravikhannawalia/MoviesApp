@@ -21,9 +21,9 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
     
     let service = MovieDBService()
     var searchResults = [SearchResults]()
-    private let itemsPerRow: CGFloat = 2
+    private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 40.0, bottom: 50.0, right: 40.0)
-    var page = 1
+    var page = 40
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,10 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell  else {
                fatalError("The dequeued cell is not an instance of SearchResultCell")
            }
+        
         updateCell(cell: cell, indexPath: indexPath)
+        loadNextPage(indexPath: indexPath)
+        
         return cell
     }
     
@@ -89,7 +92,7 @@ extension SearchPage{
             }
 
             if let results = results {
-                self.searchResults = results
+                self.searchResults += results
                 self.collectionView?.reloadData()
                 self.page += 1
             }
@@ -102,6 +105,12 @@ extension SearchPage{
         let searchItem = searchResults[indexPath.row]
         if let posterUrl = searchItem.posterUrl, let imageUrl = URL(string: Constants.imageURLInitial + posterUrl){
             cell.posterImage.kf.setImage(with: imageUrl)
+        }
+    }
+    
+    func loadNextPage(indexPath: IndexPath){
+        if indexPath.row == searchResults.count - 1 { // last cell
+            loadMovies()
         }
     }
 }
