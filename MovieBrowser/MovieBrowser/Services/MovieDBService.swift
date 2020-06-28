@@ -7,3 +7,78 @@
 //
 
 import Foundation
+import Alamofire
+
+let apiKey = ""
+
+enum ApiException{
+    case searchURLException
+    case responseException
+    case moviesDecodeException
+}
+
+enum QueryType{
+    case allResults
+    case movie
+}
+
+class MovieDBService{
+    func fetchAllResults(searchString: String, page: Int = 1, completion: @escaping (_ results: [SearchResults]?,_ error: ApiException?) -> Void){
+        
+        guard let dataUrlString = apiURL(searchString, .allResults) else {
+            completion(nil, .searchURLException)
+          return
+        }
+        
+        AF.request(dataUrlString)
+            .validate()
+            .responseDecodable(of: AllResults.self){ response in
+                guard let movies = response.value else {
+                    completion(nil, .responseException)
+                    return
+                }
+                guard let results = movies.results else {
+                    completion(nil, .moviesDecodeException)
+                    return
+                }
+                completion(results, nil)
+            }
+    }
+    
+    func fetchMovieInfo(id: String, completion: @escaping (_ results: Movie?,_ error: ApiException?) -> Void){
+        
+        guard let dataUrlString = apiURL(id, .movie) else {
+            completion(nil, .searchURLException)
+          return
+        }
+        
+        AF.request(dataUrlString)
+            .validate()
+            .responseDecodable(of: Movie.self){ response in
+            guard let movie = response.value else {
+                completion(nil, .responseException)
+                return
+            }
+            completion(movie, nil)
+        }
+    }
+    
+    //MARK: Private functions
+    func apiURL(_ searchTerm: String, _ queryType: QueryType) -> String? {
+        
+        guard let escapedTerm = "".addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) else {
+            return nil
+        }
+        var urlString: String
+        switch queryType {
+        case .allResults:
+            urlString = searchTerm + escapedTerm
+        case .movie:
+            urlString = Constants.movieURLInitial + searchTerm + Constants.apiKey
+        }
+        if queryType == .movie{
+            print(urlString)
+        }
+      return urlString
+    }
+}

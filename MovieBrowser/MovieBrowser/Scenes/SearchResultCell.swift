@@ -9,7 +9,6 @@
 import UIKit
 
 class SearchResultCell: UICollectionViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var idLabel: UILabel!
+    
     @IBOutlet weak var posterImage: UIImageView!
 }

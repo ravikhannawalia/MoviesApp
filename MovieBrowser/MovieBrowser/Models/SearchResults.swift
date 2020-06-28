@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 struct SearchResults: Decodable {
     
@@ -22,7 +23,8 @@ struct SearchResults: Decodable {
         case voteCount = "vote_count"
     }
     
-    init(from decoder: Decoder) throws{
+    init(from decoder: Decoder) throws {
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         title = try values.decode(String.self, forKey: .title)
         id = try values.decode(Int.self, forKey: .id)
