@@ -29,6 +29,7 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.        loadMovies()
+        loadMovies()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
