@@ -25,7 +25,7 @@ enum QueryType{
 class MovieDBService{
     func fetchAllResults(searchString: String, page: Int = 1, completion: @escaping (_ results: [SearchResults]?,_ error: ApiException?) -> Void){
         
-        guard let dataUrlString = apiURL(searchString, .allResults) else {
+        guard let dataUrlString = apiURL(searchString, page: page, .allResults) else {
             completion(nil, .searchURLException)
           return
         }
@@ -64,7 +64,7 @@ class MovieDBService{
     }
     
     //MARK: Private functions
-    func apiURL(_ searchTerm: String, _ queryType: QueryType) -> String? {
+    func apiURL(_ searchTerm: String, page: Int = 1, _ queryType: QueryType) -> String? {
         
         guard let escapedTerm = "".addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) else {
             return nil
@@ -72,7 +72,7 @@ class MovieDBService{
         var urlString: String
         switch queryType {
         case .allResults:
-            urlString = searchTerm + escapedTerm
+            urlString = searchTerm + escapedTerm + "&page=" + String(page)
         case .movie:
             urlString = Constants.movieURLInitial + searchTerm + Constants.apiKey
         }

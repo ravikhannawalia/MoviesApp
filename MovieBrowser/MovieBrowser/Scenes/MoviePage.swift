@@ -36,14 +36,13 @@ class MoviePage: UIViewController {
               print("Error searching : \(error)")
               return
             }
-            
+            self.titleLabel.text = movie?.title
+            self.overviewLabel.text = movie?.overview
             if let movie = movie {
                 if let posterUrl = movie.posterURL, let imageUrl = URL(string: Constants.imageURLInitial + posterUrl){
                     self.moviePoster.kf.setImage(with: imageUrl)
                 }
             }
-            self.titleLabel.text = movie?.title
-            self.overviewLabel.text = movie?.overview
             
         }
     }
