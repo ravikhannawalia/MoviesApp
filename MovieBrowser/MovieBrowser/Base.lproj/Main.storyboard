@@ -46,11 +46,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="XNn-kE-7cr" id="UkE-Wy-JU7"/>
-                                    <outlet property="delegate" destination="XNn-kE-7cr" id="Jk1-io-Nvi"/>
-                                    <outlet property="prefetchDataSource" destination="XNn-kE-7cr" id="cWW-Jt-5rS"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

@@ -29,6 +29,7 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.        loadMovies()
+        initialSetup()
         loadMovies()
     }
     
@@ -73,6 +74,13 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
 
 //Do Initial Setup
 extension SearchPage{
+    
+    func initialSetup(){
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
+    }
+    
     func loadMovies(){
         service.fetchAllResults(searchString: Constants.popularMoviesURL, page: page){ results, error in
             if let error = error {
