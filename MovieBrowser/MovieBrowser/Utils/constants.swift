@@ -17,5 +17,21 @@ struct Constants{
     
     static let imageURLInitial = "https://image.tmdb.org/t/p/w500/"
     
+    static let imageURLInitial2 = "https://image.tmdb.org/t/p/w500"
+    
     static let movieURLInitial = "https://api.themoviedb.org/3/movie/"
+    
+    
+    static let genresURLInitial = "https://api.themoviedb.org/3/discover/movie?api_key=6efc6c93672b8344194653f00432454f&sort_by=popularity.desc&with_genres="
+    
+    static let genres = [
+        "28": "Action",
+        "12": "Adventure",
+        "16": "Animation",
+        "35": "Comedy",
+        "80": "Crime",
+        "99": "Documentary",
+        "27": "Horror",
+        "53": "Thriller"
+    ]
 }

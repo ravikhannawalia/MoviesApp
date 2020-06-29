@@ -18,19 +18,24 @@ import UIKit
 class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var stackView: UIStackView!
     
     let service = MovieDBService()
     var searchResults = [SearchResults]()
+    let searchController = UISearchController(searchResultsController: nil)
+    
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 40.0, bottom: 50.0, right: 40.0)
-    var page = 40
+    var page = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.        loadMovies()
+        
         initialSetup()
         loadMovies()
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -48,7 +53,6 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
         
         updateCell(cell: cell, indexPath: indexPath)
         loadNextPage(indexPath: indexPath)
-        
         return cell
     }
     
@@ -60,11 +64,11 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
-        guard let selectedMealCell = sender as? SearchResultCell else {
+        guard let searchCell = sender as? SearchResultCell else {
             fatalError("Unexpected sender: \(sender)")
         }
         
-        guard let indexPath = collectionView.indexPath(for: selectedMealCell) else {
+        guard let indexPath = collectionView.indexPath(for: searchCell) else {
             fatalError("The selected cell is not being displayed by the table")
         }
         
@@ -82,29 +86,43 @@ extension SearchPage{
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
+        setUpNavBar()
     }
     
     func loadMovies(){
-        service.fetchAllResults(searchString: Constants.popularMoviesURL, page: page){ results, error in
+        service.fetchAllResults(searchString: Constants.popularMoviesURL, page: page){[weak self] results, error in
             if let error = error {
               print("Error searching : \(error)")
               return
             }
 
             if let results = results {
-                self.searchResults += results
-                self.collectionView?.reloadData()
-                self.page += 1
+                self?.searchResults += results
+                self?.collectionView?.reloadData()
+                self?.page += 1
             }
         }
+    }
+}
+
+extension SearchPage: UISearchResultsUpdating {
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+    // TODO
     }
 }
 
 extension SearchPage{
     func updateCell(cell: SearchResultCell, indexPath: IndexPath){
         let searchItem = searchResults[indexPath.row]
+        
         if let posterUrl = searchItem.posterUrl, let imageUrl = URL(string: Constants.imageURLInitial + posterUrl){
-            cell.posterImage.kf.setImage(with: imageUrl)
+            cell.posterImage.kf.setImage(with: imageUrl){ a, b, c, d in
+            //    cell.hideLoading()
+            }
         }
     }
     
@@ -113,6 +131,18 @@ extension SearchPage{
             loadMovies()
         }
     }
+    
+    private func setUpNavBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.title = "Movies Search"
+        
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        searchController.searchResultsUpdater = self as UISearchResultsUpdating
+        definesPresentationContext = true
+    }
+
 }
 
 extension SearchPage: UICollectionViewDelegateFlowLayout {

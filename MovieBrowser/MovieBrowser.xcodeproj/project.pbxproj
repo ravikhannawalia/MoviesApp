@@ -15,6 +15,9 @@
 		725B13FC24A8053200B11051 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B13FB24A8053200B11051 /* constants.swift */; };
 		725B13FE24A8295200B11051 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B13FD24A8295200B11051 /* Movie.swift */; };
 		725B140024A82EB700B11051 /* MoviePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B13FF24A82EB700B11051 /* MoviePage.swift */; };
+		725B140424A93FAA00B11051 /* HomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B140324A93FAA00B11051 /* HomePageController.swift */; };
+		725B140624A957AD00B11051 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B140524A957AD00B11051 /* HomeTableViewCell.swift */; };
+		725B140824A96B7800B11051 /* HomeMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B140724A96B7800B11051 /* HomeMovieCell.swift */; };
 		72D3EAC024A40D31007F5793 /* AllResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D3EABF24A40D31007F5793 /* AllResults.swift */; };
 		72E4F80524A3A572006A4CBC /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E4F80424A3A572006A4CBC /* SearchResultCell.swift */; };
 		E4163E667E6DB98D21CFCB82 /* Pods_MovieBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A410C2D6F55102CF0064263E /* Pods_MovieBrowser.framework */; };
@@ -58,6 +61,9 @@
 		725B13FB24A8053200B11051 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		725B13FD24A8295200B11051 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		725B13FF24A82EB700B11051 /* MoviePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePage.swift; sourceTree = "<group>"; };
+		725B140324A93FAA00B11051 /* HomePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageController.swift; sourceTree = "<group>"; };
+		725B140524A957AD00B11051 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		725B140724A96B7800B11051 /* HomeMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovieCell.swift; sourceTree = "<group>"; };
 		72D3EABF24A40D31007F5793 /* AllResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllResults.swift; sourceTree = "<group>"; };
 		72E4F80424A3A572006A4CBC /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		7DACB2755D863428ED0D908F /* Pods-MovieBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieBrowser.release.xcconfig"; path = "Target Support Files/Pods-MovieBrowser/Pods-MovieBrowser.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +229,9 @@
 				72E4F80424A3A572006A4CBC /* SearchResultCell.swift */,
 				725B13F624A8038C00B11051 /* SearchPage.swift */,
 				725B13FF24A82EB700B11051 /* MoviePage.swift */,
+				725B140324A93FAA00B11051 /* HomePageController.swift */,
+				725B140524A957AD00B11051 /* HomeTableViewCell.swift */,
+				725B140724A96B7800B11051 /* HomeMovieCell.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -468,12 +477,15 @@
 			files = (
 				72D3EAC024A40D31007F5793 /* AllResults.swift in Sources */,
 				725B13FC24A8053200B11051 /* constants.swift in Sources */,
+				725B140624A957AD00B11051 /* HomeTableViewCell.swift in Sources */,
 				FB825D7C24A24CCD007FFCE3 /* ViewController.swift in Sources */,
+				725B140824A96B7800B11051 /* HomeMovieCell.swift in Sources */,
 				725B13FA24A8052700B11051 /* enums.swift in Sources */,
 				725B140024A82EB700B11051 /* MoviePage.swift in Sources */,
 				72E4F80524A3A572006A4CBC /* SearchResultCell.swift in Sources */,
 				FB825DAC24A25848007FFCE3 /* SearchResults.swift in Sources */,
 				FB825D7824A24CCD007FFCE3 /* AppDelegate.swift in Sources */,
+				725B140424A93FAA00B11051 /* HomePageController.swift in Sources */,
 				725B13F724A8038C00B11051 /* SearchPage.swift in Sources */,
 				725B13F524A7F35C00B11051 /* MovieDBService.swift in Sources */,
 				FB825D7A24A24CCD007FFCE3 /* SceneDelegate.swift in Sources */,
