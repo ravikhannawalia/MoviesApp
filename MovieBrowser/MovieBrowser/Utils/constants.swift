@@ -32,6 +32,9 @@ struct Constants{
         "80": "Crime",
         "99": "Documentary",
         "27": "Horror",
-        "53": "Thriller"
+        "53": "Thriller",
+        "10752": "War",
+        "37": "Western"
+        
     ]
 }

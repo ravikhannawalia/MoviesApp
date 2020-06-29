@@ -21,7 +21,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-5t-VAw">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="747"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" red="0.039669689119171014" green="0.039669689119171014" blue="0.039669689119171014" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hAG-HM-Zxb">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -77,11 +77,13 @@
             </objects>
             <point key="canvasLocation" x="1892.753623188406" y="809.59821428571422"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="3pJ-EW-ZBW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V7s-KR-4RG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4Gs-k0-ZsN"/>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="4Gs-k0-ZsN">
+                        <color key="badgeColor" red="0.039669689119999997" green="0.039669689119999997" blue="0.039669689119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nuZ-82-RwL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -117,13 +119,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-ll-w1R">
                                         <rect key="frame" x="175.5" y="315" width="63.5" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH1-WT-QMq">
                                         <rect key="frame" x="20" y="371" width="374" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -133,7 +135,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.039669689119999997" green="0.039669689119999997" blue="0.039669689119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="pEH-9g-w5a" firstAttribute="top" secondItem="TzU-3H-Unc" secondAttribute="top" constant="100" id="cNq-JJ-05T"/>
                             <constraint firstItem="pEH-9g-w5a" firstAttribute="leading" secondItem="ky4-kQ-SR7" secondAttribute="leading" id="n9p-YX-9B8"/>
@@ -170,7 +172,7 @@
             </objects>
             <point key="canvasLocation" x="-187" y="1193"/>
         </scene>
-        <!--Home Page-->
+        <!--Home-->
         <scene sceneID="vZE-9Q-hm2">
             <objects>
                 <viewController id="jVY-SE-gM6" customClass="HomePageController" customModule="MovieBrowser" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,8 +192,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zh2-t8-3rc">
-                                                    <rect key="frame" x="5" y="38.5" width="409" height="102.5"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="5" y="31.5" width="409" height="109.5"/>
+                                                    <color key="backgroundColor" red="0.039669689119171014" green="0.039669689119171014" blue="0.039669689119171014" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e0I-Pj-b2m">
                                                         <size key="itemSize" width="89" height="89"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -200,7 +202,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeMovieCell" id="x23-Rh-88a" customClass="HomeMovieCell" customModule="MovieBrowser" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="7" width="89" height="89"/>
+                                                            <rect key="frame" x="0.0" y="10.5" width="89" height="89"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GYE-Jb-j2H">
                                                                 <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
@@ -227,7 +229,7 @@
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wE4-6N-UAr">
                                                     <rect key="frame" x="14" y="0.0" width="66.5" height="33.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -241,7 +243,7 @@
                                                 <constraint firstItem="Zh2-t8-3rc" firstAttribute="leading" secondItem="ZEj-jA-Qda" secondAttribute="leading" constant="5" id="zrd-tF-lGZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.039669689119171014" green="0.039669689119171014" blue="0.039669689119171014" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="collectionView" destination="Zh2-t8-3rc" id="Mvb-vr-58d"/>
                                             <outlet property="genreLabel" destination="wE4-6N-UAr" id="Uj2-bn-bnM"/>
@@ -263,17 +265,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VG0-mM-XaC"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home Page" id="27A-fQ-pPn"/>
+                    <navigationItem key="navigationItem" title="Home" id="27A-fQ-pPn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2Z-TD-27R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1892.753623188406" y="1674.7767857142856"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="bDF-X0-wZT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HFw-XJ-SLU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="6gI-L0-Xh6"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house" id="6gI-L0-Xh6">
+                        <color key="badgeColor" red="0.039669689119999997" green="0.039669689119999997" blue="0.039669689119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AtO-L3-L6C">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -295,5 +299,7 @@
     <resources>
         <image name="1917" width="148.5" height="220"/>
         <image name="grey" width="640" height="360"/>
+        <image name="house" catalog="system" width="128" height="110"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
     </resources>
 </document>

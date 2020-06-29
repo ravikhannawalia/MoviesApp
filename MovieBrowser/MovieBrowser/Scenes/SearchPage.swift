@@ -25,7 +25,7 @@ class SearchPage: UIViewController, UICollectionViewDataSource, UICollectionView
     let searchController = UISearchController(searchResultsController: nil)
     
     private let itemsPerRow: CGFloat = 3
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 40.0, bottom: 50.0, right: 40.0)
+    private let sectionInsets = UIEdgeInsets(top: 5.0, left: 40.0, bottom: 5.0, right: 40.0)
     var page = 1
 
     override func viewDidLoad() {
@@ -152,21 +152,9 @@ extension SearchPage: UICollectionViewDelegateFlowLayout {
     
     let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
     let availableWidth = view.frame.width - paddingSpace
-    let widthPerItem = availableWidth / itemsPerRow
+    let widthPerItem = availableWidth / (itemsPerRow-1)
     
-    return CGSize(width: widthPerItem, height: widthPerItem)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      insetForSectionAt section: Int) -> UIEdgeInsets {
-    return sectionInsets
-  }
-  
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return sectionInsets.left
+    return CGSize(width: widthPerItem, height: widthPerItem*2)
   }
 }
 
